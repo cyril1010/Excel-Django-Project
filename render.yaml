@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: excel-django-project
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn excelproject.wsgi:application --bind 0.0.0.0:8000"
