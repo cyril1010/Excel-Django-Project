@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+{% extends 'admin_home.html' %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Category</title>
+</head>
+<body>
+{% block content %}
+
+<!-- Start of Form -->
+<form method="POST" action="{% url 'CategorySave' %}" enctype="multipart/form-data">
+  {% csrf_token %}
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Add Category</div>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-6 col-lg-4">
+
+          <!-- Category Name -->
+          <div class="form-group">
+            <label for="categoryName">Category Name</label>
+            <input type="text" class="form-control" id="categoryName" name="name" placeholder="Enter Category Name">
+          </div>
+
+          <!-- Description -->
+          <div class="form-group">
+            <label for="categoryDescription">Description</label>
+            <textarea class="form-control" id="categoryDescription" rows="4" name="description" placeholder="Enter Description"></textarea>
+          </div>
+
+          <!-- Image Upload -->
+          <div class="form-group">
+            <label for="categoryImage" class="form-label">Upload Image</label>
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="categoryImage" name="image" aria-describedby="fileHelp">
+              <label class="custom-file-label" for="categoryImage">
+                <i class="fas fa-upload mr-2"></i> Choose file
+              </label><br>
+              <small id="fileHelp" class="form-text text-muted">Please upload a relevant category image.</small>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="card-action">
+      <button type="submit" class="btn btn-success">Submit</button>
+      <a href="{% url 'CategoryDisplay' %}" class="btn btn-danger">Cancel</a>
+    </div>
+  </div>
+</form>
+<!-- End of Form -->
+
+{% endblock %}
+
+</body>
+</html>

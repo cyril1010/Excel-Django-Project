@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+{% extends 'admin_home.html' %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product List</title>
+</head>
+<body>
+{% block content %}
+
+<div class="card">
+    <div class="card-header">
+        <div class="card-title">Product List
+            <a href="{% url 'ProductAdd' %}" class="btn btn-sm text-white btn-success mr-1" style="float: right;">
+                <i class="fas fa-plus"></i> Add New Product
+            </a>
+        </div>
+    </div>
+
+    <div class="card-body">
+        <table class="table table-bordered table-head-bg-info table-bordered-bd-info mt-4">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Brand</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in products %}
+                <tr>
+                    <td>{{ product.id }}</td>  <!-- Automatically generates the row number -->
+                    <td>{{ product.name }}</td>  <!-- Product name -->
+                    <td>{{ product.brand }}</td>  <!-- Product brand -->
+                    <td>{{ product.category }}</td>  <!-- Product category -->
+                    <td>{{ product.description }}</td>  <!-- Product description -->
+                    <td>
+                        <img src="{{ product.image.url }}" alt="{{ product.name }} image" class="img-thumbnail" style="width:80px; height:80px;">
+                    </td>
+                    <td>$ {{ product.price }}</td>
+                    <td>
+                        <a href="{% url 'ProductEdit' product.id %}" class="btn btn-sm btn-primary mr-1">
+                            <i class="fas fa-edit"></i> Edit
+                        </a>
+                        <a href="{% url 'ProductDelete' product.id %}" class="btn btn-sm btn-danger">
+                            <i class="fas fa-trash"></i> Delete
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}
+
+</body>
+</html>

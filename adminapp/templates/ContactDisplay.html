@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+{% extends 'admin_home.html' %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% block content %}
+
+<div class="card">
+    <div class="card-header">
+        <div class="card-title">Contact List</div>
+    </div>
+
+  <div class="card-body">
+    <table class="table table-bordered table-head-bg-info table-bordered-bd-info mt-4">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Phone</th>
+          <th scope="col">Subject</th>
+          <th scope="col">Message</th>
+          <th scope="col">Enquiry On</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+    {% for contact in contacts %}
+    <tr>
+        <td>{{ contact.name }}</td>  <!-- Contact name -->
+        <td>{{ contact.email }}</td>  <!-- Contact email -->
+        <td>{{ contact.phone }}</td>  <!-- Contact phone -->
+        <td>{{ contact.subject }}</td>  <!-- Subject -->
+        <td>{{ contact.message }}</td>  <!-- Contact message -->
+        <td>{{ contact.created_at}}</td>  <!-- Contact time -->
+        <td>
+            <a href="{% url 'ContactDelete' contact_id=contact.id %}" class="btn btn-sm btn-danger">
+                <i class="fas fa-trash"></i> Delete
+            </a>
+        </td>
+    </tr>
+    {% endfor %}
+</tbody>
+
+    </table>
+  </div>
+</div>
+
+{% endblock %}
+
+</body>
+</html>

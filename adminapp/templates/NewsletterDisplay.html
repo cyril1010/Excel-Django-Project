@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+{% extends 'admin_home.html' %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% block content %}
+
+<div class="card">
+    <div class="card-header">
+        <div class="card-title">Newsletter List</div>
+    </div>
+
+  <div class="card-body">
+    <table class="table table-bordered table-head-bg-info table-bordered-bd-info mt-4">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Email</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+    {% for newsletter in newsletter %}
+    <tr>
+        <td>{{ forloop.counter }}</td>  <!-- Contact name -->
+        <td>{{ newsletter.email }}</td>  <!-- Contact email -->
+        <td>
+            <a href="{% url 'NewsletterDelete' news_id=newsletter.id %}" class="btn btn-sm btn-danger">
+                <i class="fas fa-trash"></i> Delete
+            </a>
+        </td>
+    </tr>
+    {% endfor %}
+</tbody>
+
+    </table>
+  </div>
+</div>
+
+{% endblock %}
+
+</body>
+</html>
